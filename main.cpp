@@ -150,7 +150,7 @@ int main() {
 	"Detected scene value: " << detected_scene_mode << "\n\n";
 
 	/**
-	 * ==== AUTO WHITE BALANCE ====
+	 * ==== AUTO WHITE BALANCE (AWB)====
 	 */
 	ia_aiq_awb_input_params awb_params = {
 		ia_aiq_frame_use_still, ia_aiq_awb_operation_mode_auto,
@@ -166,6 +166,18 @@ int main() {
 	"Final R/G: " << awb_result->final_r_per_g << "\n" <<
 	"Final B/G: " << awb_result->final_b_per_g << "\n" <<
 	"Color temp est. : " << awb_result->distance_from_convergence << "\n\n";
+
+	/**
+	 * ==== Parameter adaptor ====
+	 * Depends on AWB and Auto Exposure results.
+	 * Compute generic parameters (Color Correction Matrix and Black Level
+	 * Correction)which should be used to correct the next frame.
+	 */
+
+	/**
+	 * ==== Shading adaptor ====
+	 * Depends on AWB results.
+	 */
 
 	std::cout << "Main function ran" << std::endl;
 
