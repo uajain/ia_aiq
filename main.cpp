@@ -162,10 +162,16 @@ int main() {
 	show_err_if_any(err);
 
 	/* Investigate why awb_result is still nullptr, causing segfault */
-	std::cout << "=== AUTO WHITE BALANCE ===" << "\n"
-	"Final R/G: " << awb_result->final_r_per_g << "\n" <<
-	"Final B/G: " << awb_result->final_b_per_g << "\n" <<
-	"Color temp est. : " << awb_result->distance_from_convergence << "\n\n";
+	std::cout << "=== AUTO WHITE BALANCE ===" << "\n";
+
+	if (awb_result) {
+		std::cout <<
+		"Final R/G: " << awb_result->final_r_per_g << "\n" <<
+		"Final B/G: " << awb_result->final_b_per_g << "\n" <<
+		"Color temp est. : " << awb_result->distance_from_convergence << "\n\n";
+	} else {
+		std::cout << "Error: awb_result == NULL" << std::endl;
+	}
 
 	/**
 	 * ==== Parameter adaptor ====
