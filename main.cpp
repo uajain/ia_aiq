@@ -153,7 +153,9 @@ int main() {
 		nullptr, nullptr, 0.0
 	};
 
-	ia_aiq_awb_results *awb_result = nullptr;
+
+	ia_aiq_awb_results awb_result_alloc;
+	ia_aiq_awb_results *awb_result = &awb_result_alloc;
 	err = ia_aiq_awb_run(aiq, &awb_params, &awb_result);
 	show_err_if_any(err);
 
