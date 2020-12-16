@@ -76,7 +76,6 @@ int main() {
 		ia_aiq_af_bracket_mode_symmetric
 	};
 
-	err = ia_err_none;
 	ia_aiq_af_bracket_results *af_bracket_results = nullptr;
 	err = ia_aiq_af_bracket (aiq, &af_bracket_params, &af_bracket_results);
 	show_err_if_any(err);
@@ -102,9 +101,8 @@ int main() {
 		ia_aiq_ae_exposure_distribution_auto, -1
 	};
 
-	err = ia_err_none;
 	ia_aiq_ae_results *aeResults = nullptr;
-	ia_aiq_ae_run(aiq, &ae_params, &aeResults);
+	err = ia_aiq_ae_run(aiq, &ae_params, &aeResults);
 	show_err_if_any(err);
 
 	std::cout << "=== AUTO EXPOSURE ===" << "\n" <<
@@ -122,9 +120,8 @@ int main() {
 		0
 	};
 
-	err = ia_err_none;
 	ia_aiq_gbce_results *gbce_result = nullptr;
-	ia_aiq_gbce_run (aiq, &gbce_params, &gbce_result);
+	err = ia_aiq_gbce_run (aiq, &gbce_params, &gbce_result);
 	show_err_if_any(err);
 
 	std::cout << "=== GBCE ===" << "\n"
@@ -141,9 +138,8 @@ int main() {
 		ia_aiq_scene_mode_landscape
 	};
 
-	err = ia_err_none;
 	ia_aiq_scene_mode detected_scene_mode;
-	ia_aiq_dsd_run (aiq, &dsd_params, &detected_scene_mode);
+	err = ia_aiq_dsd_run (aiq, &dsd_params, &detected_scene_mode);
 	show_err_if_any(err);
 
 	std::cout << "=== Determine Scene DSD ===" << "\n"
