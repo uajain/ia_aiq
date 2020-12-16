@@ -10,5 +10,8 @@ clean:
 run: ipa-ipu3
 	LD_LIBRARY_PATH=./ia_imaging/usr/lib64/ ./ipa-ipu3
 
-debug: ipa-ipu3
-	LD_LIBRARY_PATH=./ia_imaging/usr/lib64/ gdb ./ipa-ipu3
+debug: gdb
+valgrind: ARGS=--leak-check=full
+
+strace valgrind gdb: ipa-ipu3
+	LD_LIBRARY_PATH=./ia_imaging/usr/lib64/ $@ $(ARGS) ./ipa-ipu3
