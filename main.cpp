@@ -32,12 +32,39 @@ int show_err_if_any(ia_err iaErr)
 	return 0;
 }
 
+// CpfStore::loadConf in HAL
+ia_binary_data* loadAiqbData()
+{
+	FILE *file;
+	int fileSize = 0;
+
+	file = fopen("data/00imx258.aiqb", "rb");
+	fseek(file, 0, SEEK_END);
+	fileSize = ftell(file);
+	fseek(file, 0, SEEK_SET);
+	if (!fileSize)
+		return nullptr;
+
+	void *ptr = malloc(fileSize + 1);
+	if (fread(ptr, 1, fileSize, file) != fileSize)
+		return nullptr;
+	fclose(file);
+
+	return static_cast<ia_binary_data *>(ptr);
+}
+
 int main() {
 	ia_err err = ia_err_none;
 
 	ia_binary_data *aiqbData = nullptr;
 	ia_binary_data *nvmData = nullptr;
 	ia_binary_data *aiqData = nullptr;
+
+	aiqbData = loadAiqbData();
+	if(!aiqbData) {
+		std::cout << "Could not load initial tuning data, Exiting.\n";
+		return -1;
+	}
 
 	ia_aiq * aiq = ia_aiq_init(aiqbData, nvmData, aiqData,
 				   1920, 1080, 3, NULL, NULL);
