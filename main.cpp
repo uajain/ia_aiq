@@ -35,11 +35,11 @@ int show_err_if_any(ia_err iaErr)
 int main() {
 	ia_err err = ia_err_none;
 
-	ia_binary_data aiqbData = {nullptr, 0};
-	ia_binary_data nvmData = {nullptr, 0};
-	ia_binary_data aiqData = {nullptr, 0};
+	ia_binary_data *aiqbData = nullptr;
+	ia_binary_data *nvmData = nullptr;
+	ia_binary_data *aiqData = nullptr;
 
-	ia_aiq * aiq = ia_aiq_init(&aiqbData, &nvmData, &aiqData,
+	ia_aiq * aiq = ia_aiq_init(aiqbData, nvmData, aiqData,
 				   1920, 1080, 3, NULL, NULL);
 
 	/**
