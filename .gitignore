@@ -1,0 +1,4 @@
+*.h.swp
+*.cpp.swp
+ipa-ipu3
+main.o
